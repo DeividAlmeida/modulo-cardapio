@@ -1,5 +1,6 @@
 <?php
-	$TitlePage = 'Cardapio';
+	error_reporting(0);
+	$TitlePage = 'Cardápio';
 	$UrlPage   = 'cardapio.php';
 	require_once('includes/funcoes.php');
 	require_once('includes/header.php');

@@ -6,14 +6,14 @@
 	#$_GET['id'] = 4;
 	if(isset($_GET['id'])):
 	    $categoria = $_GET['id'];
-	    $fetch = DBRead('cardapio_item','*' ,"WHERE categoria = '{$categoria}'");
+	    $fetch = DBRead('cardapio_item','*' ,"WHERE categoria = '{$categoria}' ORDER BY ordem");
 	elseif (isset($_GET['categoria'])):
 	    $cat = $_GET['categoria'];
-	    $fetch = DBRead('cardapio_item','*' ,"WHERE categoria = '{$cat}'");
+	    $fetch = DBRead('cardapio_item','*' ,"WHERE categoria = '{$cat}' ORDER BY ordem");
 	    $categoria = 'null';
 	else:
 	    $categoria = 'null';
-	    $fetch = DBRead('cardapio_item','*');
+	    $fetch = DBRead('cardapio_item','*','ORDER BY ordem');
 
 	endif;
 	    $categorias = json_encode(DBRead('cardapio_categoria','*'));
@@ -91,6 +91,7 @@ html{
     overflow: hidden;
     top: -50px;
     left: -8%;
+    height:350px
 }
 
 #fechar{
