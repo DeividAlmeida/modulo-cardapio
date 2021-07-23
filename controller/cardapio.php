@@ -33,7 +33,11 @@ if(isset($_GET['C_id'])):
     }else{
         $query =  DBUpdate($db, $data, "id = '{$id}'");
     };
-
+    if ($query != 0)  {
+        Redireciona($UrlPage.'?sucesso'.$route);
+    } else {
+        Redireciona($UrlPage.'?erro'.$route);
+    }
     #ITEM
 elseif(isset($_GET['I_id'])):
     $id = $_GET['I_id'];
@@ -58,6 +62,11 @@ elseif(isset($_GET['I_id'])):
         $query =  DBUpdate($db, $data, "id = '{$id}'");
         $route ='&Item&Catego='.$_POST['categoria'];
     };
+    if ($query != 0)  {
+        Redireciona($UrlPage.'?sucesso'.$route);
+    } else {
+        Redireciona($UrlPage.'?erro'.$route);
+    }
 endif;
 
 #DELETAR CATEGORIA
@@ -70,6 +79,11 @@ if(isset($_GET['DeletarCategoria'])){
             DBDelete('cardapio_item',"categoria = '{$id}'");
         }
     endif;
+    if ($query != 0)  {
+        Redireciona($UrlPage.'?sucesso'.$route);
+    } else {
+        Redireciona($UrlPage.'?erro'.$route);
+    }
 }
 
 #DELETAR ITEM
@@ -78,12 +92,10 @@ if(isset($_GET['DeletarItem'])){
     $cat = DBRead('cardapio_item','*' ,"WHERE id = '{$id}'")[0];
     $route ='&Item&Catego='.$_GET['catego'];
     $query  = DBDelete('cardapio_item',"id = '{$id}'");
-}
-
-if(isset($query)){
     if ($query != 0)  {
         Redireciona($UrlPage.'?sucesso'.$route);
     } else {
         Redireciona($UrlPage.'?erro'.$route);
     }
 }
+
